@@ -3,17 +3,21 @@
 
 <head>
     <title>學習清單總整理</title>
+    <link rel="stylesheet" href="./navStyle.css">
     <style type="text/css">
+        a { font-size: 1rem; text-decoration: none; }
         /* 透過<a>標籤，設定字型 & 取消底線 */
-
+        a:link { color: green; }
         /* (link) 設定超連結未連結時的顏色 */
-
+        
+        a:visited { color: red; }
         /* (visited) 設定超連結已連結過的顏色 */
-
+        
+        a:hover { color: yellow; }
         /* (hover) 設定滑鼠移至連結上方時的顏色 */
 
+        a:active { color: black; }
         /* (active) 設定超連結點選連結當下的顏色 */
-
     </style>
 </head>
 
@@ -28,6 +32,18 @@
     <!-- 3. 設定點選項目的時候，會對應到w3c的各項連結 -->
     <!-- 4. 引用 navStyle.css -->
     <!-- 5. 對照 navStyle.css 設定網頁元素 -->
+
+    <div class="navBar">
+        <ul>
+            <li><a href="https://www.w3schools.com/html/">HTML</a></li>
+            <li><a href="https://www.w3schools.com/css/default.asp">CSS</a></li>
+            <li><a href="https://www.w3schools.com/js/default.asp">JavaScript</a></li>
+            <li><a href="https://www.w3schools.com/sql/default.asp">SQL</a></li>
+            <li><a href="https://www.w3schools.com/php/default.asp">PHP</a></li>
+            <li><a href="https://www.w3schools.com/bootstrap/bootstrap_ver.asp">Bootstrap</a></li>
+            <li><a href="https://www.w3schools.com/jquery/default.asp">jQuery</a></li>
+        </ul>
+    </div>
 
     <p><a href="https://www.w3schools.com/css/css_pseudo_classes.asp">CSS Pseudo-classes</a></p>
 

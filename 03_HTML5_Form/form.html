@@ -22,13 +22,138 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title> HTML - Form </title>
+    <style>
+        body {
+            background-color: #28b1e2;
+            font-family: Arial, Helvetica, sans-serif, Microsoft JhengHei;
+        }
+
+        .list {
+            background-color: #fff;
+            width: 720px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 15px !important;
+        }
+        
+        .form-check-inline > input {
+            display: none;
+        }
+        .form-check-inline > label { cursor: pointer; position: relative; }
+        .form-check-inline > label::before { content: ""; border: #ddd 1px solid; width: 16px; height: 16px; margin-right: 9px; }
+        .form-check-inline > input[type="radio"] + label::before { border-radius: 99em; }
+        .form-check-inline > label::after { content: ""; width: 10px; height: 10px; line-height: 10px; border-radius: 99em; position: absolute; left: 3px; }
+        .form-check-inline > input[type="checkbox"]:checked + label::after { content: "\2714"; color: #2fe4b0; font-size: 10px; font-weight: 700; }
+        .form-check-inline > input[type="radio"]:checked + label::after { background-color: #2fe4b0; }
+    </style>
 </head>
 
 <body>
-   
-    
+
+    <div class="list">
+        <h2 class="text-center">教室通訊錄</h2>
+        <form class="form-inline">
+
+            <div class="form-group col-sm-12">
+                <label class="col-sm-4" for="name">姓名</label>
+                <input type="text" class="col-sm-8 form-control" id="name" placeholder="Enter name" name="name">
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="col-sm-4" for="phone">電話</label>
+                <input type="text" class="col-sm-8 form-control" id="phone" placeholder="Enter phone" name="phone">
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="col-sm-4" for="phone">性別</label>
+                <div class="col-sm-8 row">
+                    <div class="form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>
+                        <label class="form-check-label" for="radio1">男</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">
+                        <label class="form-check-label" for="radio2">女</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="col-sm-4" for="city">居住地</label>
+                <select class="col-sm-8 form-control" id="city">
+                    <option>北</option>
+                    <option>中</option>
+                    <option>南</option>
+                    <option>東</option>
+                </select>
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="col-sm-4" for="city">使用軟體</label>
+                <div class="form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="check1" name="vehicle1" value="something" checked>
+                    <label class="form-check-label" for="check1">Word</label>
+                </div>
+                <div class="form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="check2" name="vehicle2" value="something">
+                    <label class="form-check-label" for="check2">Excel</label>
+                </div>
+                <div class="form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="checkˇ" name="vehicleˇ">
+                    <label class="form-check-label" for="checkˇ">PowerPoint</label>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="col-sm-4" for="email">Email</label>
+                <input type="email" class="col-sm-8 form-control" id="email" placeholder="Enter email" name="email">
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="col-sm-4" for="color">最喜歡的顏色</label>
+                <input type="color" class="col-sm-8 form-control" id="color" name="color" onchange="clickColor(0, -1, -1, 5)" value="#ff0000">
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="col-sm-4" for="height">身高</label>
+                <output id="height_range" class="col-sm-2"></output>
+                <input type="range" class="col-sm-6 form-control-range" id="height" name="height" min="100" max="250" step="1" value="160" onmousedown="changeValue();" onmouseup="clearIntervalfff();">
+            </div>
+
+            <div class="col-sm-12 text-right">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+
 </body>
+
+<script>
+    var changeValue = function() {
+        interval = window.setInterval(function(){
+            var value = document.getElementById('height').value
+            document.getElementById('height_range').value = value;
+        }, 10);
+    };
+
+    var clearIntervalfff = function() {
+        window.clearInterval(interval);
+        interval = null;
+    };
+    document.getElementById('height_range').value = 160;
+
+</script>
 
 </html>
 
@@ -42,5 +167,3 @@
 <!--1.9. 試試看，加入送出按鈕 (submit) -->
 <!--1.10. 試試看，加入居住地 <select> <option> -->
 <!--1.11. 試試看，按下按鈕網址列會有什麼改變? -->
-
-
