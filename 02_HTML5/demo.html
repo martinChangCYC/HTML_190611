@@ -40,6 +40,12 @@
         .btn { color: #fff; font-weight: 700; text-decoration: none; border: #fff 1px solid; border-radius: 4px; padding: 6px 9px; }
         .btn.btn-yellow { color: #ebdc5a; border-color: #ebdc5a; transition-duration: 0.15s; }
         .btn.btn-yellow:hover { color: #444; background-color: #ebdc5a; }
+
+        .guess-group { display: flex; padding: 40px; margin-top: 40px; }
+        .guess-input { border: 1px #ddd solid; padding: 15px; flex: 1; display: flex; }
+        .guess-input input { width: 25%; display: inline-block; }
+        .guess-input * { height: 53px; }
+        .guess-history { max-height: 480; border: 1px #ddd solid; padding: 15px; flex: 2; overflow-y: auto; }
     </style>
 </head>
 <body>
@@ -74,6 +80,19 @@
         </div>
     </nav>
 
+    <div class="guess-group">
+        <div class="guess-input">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <button id="send">send</button>
+        </div>
+        <div class="guess-history">
+            <p>1 2 3 4 | 1 A 1 B</p>
+</div>
+    </div>
+
     <!-- <iframe class="video" src="https://www.youtube.com/embed/cfFx9LfHrvY?rel=0&autoplay=1&mute=1" frameborder="0" allow="encrypted-media" allowfullscreen></iframe> -->
     <p>My hero academia! SMESHHHHHH!!!!</p>
 </body>
@@ -93,6 +112,39 @@
         $('.dropdown-pick').html(target);
         $(this).addClass('active').siblings().removeClass('active');
     });
+
+    $('#send').click(function() {
+        let aCount = 0;
+        let bCount = 0;
+        let numText = '';
+        $('.guess-input input').each(function(i) {
+            const num = Number($(this).val());
+            numText += num + ' ';
+            const index = ans.indexOf(num);
+            if (index != -1) {
+                if (index == i) {
+                    aCount += 1;
+                } else {
+                    bCount += 1;
+                }
+            }
+
+        });
+
+        const text = `<p> ${numText} | ${aCount} A ${bCount} B </p>`;
+        $('.guess-history').append(text);
+        
+        
+    });
+
+    const ans = [
+        parseInt(9*Math.random()),
+        parseInt(9*Math.random()),
+        parseInt(9*Math.random()),
+        parseInt(9*Math.random()),
+    ];
+    console.log(ans);
+    
 </script>
 
 </html>
