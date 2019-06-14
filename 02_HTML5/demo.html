@@ -23,12 +23,19 @@
         .title-icon > div { font-size: 18px; font-weight: 700; border: #fff 1px solid; line-height: 32px; border-radius: 4px; }
         .title-icon > div:hover { cursor: pointer; }
 
-        .dropdown-group { position: absolute; }
+        .dropdown { position: relative; }
+        .dropdown-group { position: absolute; top: 48px; right: 0; }
         .dropdown-group > .dropdown-item { color: #ddd; text-decoration: none; }
         .dropdown-pick { color: #ddd; text-decoration: none; cursor: pointer; }
         .dropdown-pick::after { content: "V"; font-size: 10px; margin-left: 9px; display: inline-block; transition-duration: 0.15s; }
         .dropdown-pick:focus::after { transform: rotate(180deg); }
         .dropdown-pick:hover { color: #fff; }
+
+        .dropdown-group.active { display: block; height: auto; border-width: 1px; padding-top: 15px; padding-bottom: 15px; }
+        .dropdown-group { height: 0; padding: 0; background-color: #fff; border: 0px #ddd solid; border-radius: 4px; max-height: 100px; overflow-y: auto; transition-duration: 0.3s; }
+        .dropdown-group > .dropdown-item { display: block; line-height: normal; padding: 4px 25px; }
+        .dropdown-group > .dropdown-item:hover { color: green; background-color: #ddd; }
+        .dropdown-group > .dropdown-item.active { color: green; background-color: #ddd; }
 
         .btn { color: #fff; font-weight: 700; text-decoration: none; border: #fff 1px solid; border-radius: 4px; padding: 6px 9px; }
         .btn.btn-yellow { color: #ebdc5a; border-color: #ebdc5a; transition-duration: 0.15s; }
@@ -46,10 +53,16 @@
         </div>
         <div class="nav-link-group right">
             <div class="nav-link-item dropdown">
-                <a class="dropdown-pick">LinkA</a>
+                <a class="dropdown-pick" href="#">LinkB</a>
                 <div class="dropdown-group">
-                    <a class="dropdown-item" href="#">LinkA</a>
-                    <a class="dropdown-item" href="#">LinkB</a>
+                    <a class="dropdown-item" href="#111">LinkA</a>
+                    <a class="dropdown-item active" href="#">LinkB</a>
+                    <a class="dropdown-item" href="#">LinkC</a>
+                    <a class="dropdown-item" href="#">LinkC</a>
+                    <a class="dropdown-item" href="#">LinkC</a>
+                    <a class="dropdown-item" href="#">LinkC</a>
+                    <a class="dropdown-item" href="#">LinkC</a>
+                    <a class="dropdown-item" href="#">LinkC</a>
                     <a class="dropdown-item" href="#">LinkC</a>
                 </div>
             </div>
@@ -64,4 +77,22 @@
     <!-- <iframe class="video" src="https://www.youtube.com/embed/cfFx9LfHrvY?rel=0&autoplay=1&mute=1" frameborder="0" allow="encrypted-media" allowfullscreen></iframe> -->
     <p>My hero academia! SMESHHHHHH!!!!</p>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    $('.dropdown-pick').focus(function() {
+        $('.dropdown-group').addClass('active');
+    }).focusout(function() {
+        $('.dropdown-group').removeClass('active');
+    });
+
+    $('.dropdown-group').on('click', '.dropdown-item', function() {
+        console.log(111);
+        
+        var target = $(this).html();
+        console.log(target);
+        $('.dropdown-pick').html(target);
+        $(this).addClass('active').siblings().removeClass('active');
+    });
+</script>
+
 </html>
